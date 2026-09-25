@@ -50,7 +50,7 @@
                     </div>
                 {% endfor %}
             </div>
-            <!-- Exam questions; submission is implemented in the next lab task. -->
+            <!-- Exam questions -->
             {% if user.is_authenticated %}
             <br>
             <button class="btn btn-primary btn-block" type="button"
@@ -58,7 +58,7 @@
                 Start Exam
             </button>
             <div id="exam" class="collapse">
-                <form id="questionform" method="post">
+                <form id="questionform" action="{% url 'onlinecourse:submit' course.id %}" method="post">
                     {% csrf_token %}
                     {% for question in course.question_set.all %}
                     <div class="card mt-1">
@@ -80,7 +80,7 @@
                         </div>
                     </div>
                     {% endfor %}
-                    <button class="btn btn-success btn-block" type="submit" disabled>
+                    <button class="btn btn-success btn-block" type="submit">
                         Submit
                     </button>
                 </form>
